@@ -11,8 +11,8 @@
     "postinstall": "npm run prisma:generate:cloud && npm run prisma:generate:local",
     "build:desktop": "npm run build && electron-builder",
     "build:mobile": "capacitor sync && capacitor copy",
-    "prisma:generate:local": "prisma generate --schema=./prisma/schema.local.prisma",
-    "prisma:generate:cloud": "prisma generate --schema=./prisma/schema.cloud.prisma"
+    "prisma:generate:local": "DATABASE_URL_LOCAL=file:./dummy.db prisma generate --schema=./prisma/schema.local.prisma",
+    "prisma:generate:cloud": "DATABASE_URL_CLOUD=postgresql://user:password@localhost:5432/dummy prisma generate --schema=./prisma/schema.cloud.prisma"
   },
   "build": {
     "appId": "com.example.posdashboard",
@@ -35,13 +35,13 @@
     }
   },
   "dependencies": {
+    "@capacitor-community/sqlite": "^6.0.0",
     "@capacitor/app": "^6.0.0",
     "@capacitor/core": "^6.0.0",
     "@capacitor/haptics": "^6.0.0",
     "@capacitor/keyboard": "^6.0.0",
     "@capacitor/status-bar": "^6.0.0",
-    "@capacitor-community/sqlite": "^6.0.0",
-    "@prisma/client": "^5.20.0",
+    "@prisma/client": "^6.19.0",
     "autoprefixer": "^10.4.20",
     "better-sqlite3": "^11.0.0",
     "electron": "^30.0.0",
@@ -63,9 +63,7 @@
     "electron-builder": "^24.13.3",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.3",
-    "prisma": "^5.20.0",
+    "prisma": "^6.19.0",
     "typescript": "^5.6.3"
   }
 }
-
-

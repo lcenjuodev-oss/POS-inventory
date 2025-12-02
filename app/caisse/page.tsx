@@ -139,7 +139,6 @@ export default function CaissePage() {
             (1000 * 60 * 60 * 24)
         );
         
-
         if (dateFilter === "day" && order.date !== todayStr) {
           return false;
         }

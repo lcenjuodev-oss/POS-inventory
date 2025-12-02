@@ -1,6 +1,4 @@
-export const config = {
-  runtime: "edge"
-};
+export const runtime = "edge";
 
 // Very small in-memory hub for WebSocket connections (template only)
 const sockets = new Set<WebSocket>();

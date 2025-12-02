@@ -11,8 +11,8 @@
     "postinstall": "npm run prisma:generate:cloud && npm run prisma:generate:local",
     "build:desktop": "npm run build && electron-builder",
     "build:mobile": "capacitor sync && capacitor copy",
-    "prisma:generate:local": "PRISMA_SCHEMA=./prisma/schema.local.prisma prisma generate",
-    "prisma:generate:cloud": "PRISMA_SCHEMA=./prisma/schema.cloud.prisma prisma generate"
+    "prisma:generate:local": "prisma generate --schema=./prisma/schema.local.prisma",
+    "prisma:generate:cloud": "prisma generate --schema=./prisma/schema.cloud.prisma"
   },
   "build": {
     "appId": "com.example.posdashboard",

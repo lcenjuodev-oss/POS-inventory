@@ -9,13 +9,14 @@ export async function getMobileDb() {
   }
 
   if (!db) {
-    const ret = await CapacitorSQLite.createConnection({
+    const result = await CapacitorSQLite.createConnection({
       database: "pos_local",
       version: 1,
       encrypted: false,
       mode: "no-encryption"
     });
-    db = ret;
+    // createConnection returns the connection, but types may be incorrect
+    db = (result as unknown) as SQLiteDBConnection;
     await db.open();
   }
 

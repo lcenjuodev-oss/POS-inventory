@@ -1,7 +1,6 @@
-export const runtime = "edge";
+import { addSocket } from "@/lib/realtime/broadcast";
 
-// Very small in-memory hub for WebSocket connections (template only)
-const sockets = new Set<WebSocket>();
+export const runtime = "edge";
 
 export async function GET(request: Request) {
   const upgradeHeader = request.headers.get("upgrade") || "";
@@ -12,31 +11,12 @@ export async function GET(request: Request) {
   const { 0: client, 1: server } = new WebSocketPair();
 
   (server as WebSocket).accept();
-
-  sockets.add(server as WebSocket);
-
-  (server as WebSocket).addEventListener("close", () => {
-    sockets.delete(server as WebSocket);
-  });
-
-  (server as WebSocket).addEventListener("error", () => {
-    sockets.delete(server as WebSocket);
-  });
+  addSocket(server as WebSocket);
 
   return new Response(null, {
     status: 101,
     webSocket: client
   } as any);
-}
-
-export function broadcastRealtimeEvent(payload: unknown) {
-  for (const socket of sockets) {
-    try {
-      socket.send(JSON.stringify(payload));
-    } catch {
-      // ignore
-    }
-  }
 }
 
 

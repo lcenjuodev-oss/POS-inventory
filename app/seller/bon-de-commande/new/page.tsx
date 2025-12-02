@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Card } from "@/components/ui/Card";
 import { Header } from "@/components/layout/Header";
@@ -116,7 +116,7 @@ type CartItem = {
   unitPrice?: number;
 };
 
-export default function NewBonDeCommandePage() {
+function NewBonDeCommandePageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const editingOrderId = searchParams.get("orderId");
@@ -729,6 +729,14 @@ export default function NewBonDeCommandePage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function NewBonDeCommandePage() {
+  return (
+    <Suspense fallback={<div className="p-6">Loading...</div>}>
+      <NewBonDeCommandePageContent />
+    </Suspense>
   );
 }
 

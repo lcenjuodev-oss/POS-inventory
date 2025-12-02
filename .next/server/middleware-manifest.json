@@ -1,6 +1,33 @@
 {
   "version": 3,
   "middleware": {},
-  "functions": {},
+  "functions": {
+    "/api/realtime/route": {
+      "files": [
+        "server/middleware-build-manifest.js",
+        "server/middleware-react-loadable-manifest.js",
+        "server/next-font-manifest.js",
+        "server/interception-route-rewrite-manifest.js",
+        "prerender-manifest.js",
+        "server/edge-runtime-webpack.js",
+        "server/app/api/realtime/route.js"
+      ],
+      "name": "app/api/realtime/route",
+      "page": "/api/realtime/route",
+      "matchers": [
+        {
+          "regexp": "^/api/realtime$",
+          "originalSource": "/api/realtime"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "environments": {
+        "previewModeId": "4bd44ae91c7698bd9cfb22c229245d1a",
+        "previewModeSigningKey": "3ac8fe9ef3fbbd58e0f780cf7f32da29c4b39c0783ecaa0390fe0f3730058f5e",
+        "previewModeEncryptionKey": "8e08193993acc1eba64df62e91e2f9feb97cf2c1cf76b7ec9f3090670cb7d77e"
+      }
+    }
+  },
   "sortedMiddleware": []
 }
